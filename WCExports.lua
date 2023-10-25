@@ -41,8 +41,21 @@ local function ExportCollectionInfo()
     end
     local petString = "Pets:" .. table.concat(collectedPets, ",")
 
+    -- Factions
+    local collectedFactions = {}
+    for factionName, factionID in pairs(WCExport_FactionNameIds) do -- Assuming your table is named WCExport_FactionNameIds
+        for i = 1, GetNumFactions() do
+            local name, _, standingID = GetFactionInfo(i)
+            if name == factionName and standingID == 8 then
+                table.insert(collectedFactions, factionID)
+                break -- break early if the faction is found and meets the criteria
+            end
+        end
+    end
+    local factionString = "Factions:" .. table.concat(collectedFactions, ",")
+
     -- Combine strings
-    local collectionString = mountString .. ";" .. toyString .. ";" .. achievementString .. ";" .. petString
+    local collectionString = mountString .. ";" .. toyString .. ";" .. achievementString .. ";" .. petString .. ";" .. factionString
 
     return collectionString
 end
