@@ -6,8 +6,8 @@
 
 ## DefaultState: enabled
 
-AchievementData.lua
-PetData.lua
-FactionData.lua
-TitleData.lua
+Data/AchievementData.lua
+Data/PetData.lua
+Data/FactionData.lua
+Data/TitleData.lua
 WCExports.lua
