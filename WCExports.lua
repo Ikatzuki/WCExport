@@ -1,5 +1,6 @@
--- Function to export mount info
-local function ExportMountInfo()
+-- Function to export mount and toy info
+local function ExportCollectionInfo()
+    -- Mounts
     local mountIDs = C_MountJournal.GetMountIDs()
     local collectedMounts = {}
     for i, mountID in ipairs(mountIDs) do
@@ -9,7 +10,31 @@ local function ExportMountInfo()
         end
     end
     local mountString = "Mounts:" .. table.concat(collectedMounts, ",")
-    return mountString
+
+    -- Toys
+    local collectedToys = {}
+    for i = 1, 60 do
+        local itemID = C_ToyBox.GetToyFromIndex(i)
+        if PlayerHasToy(itemID) then
+            table.insert(collectedToys, itemID)
+        end
+    end
+    local toyString = "Toys:" .. table.concat(collectedToys, ",")
+
+    -- Achievements
+    local collectedAchievements = {}
+    for _, achievementID in ipairs(WCExport_AchievementIDs) do
+        local _, _, _, completed = GetAchievementInfo(achievementID)
+        if completed then
+            table.insert(collectedAchievements, achievementID)
+        end
+    end
+    local achievementString = "Achievements:" .. table.concat(collectedAchievements, ",")
+
+    -- Combine mount and toy strings
+    local collectionString = mountString .. ";" .. toyString .. ";" .. achievementString
+
+    return collectionString
 end
 
 -- Function to get the main frame
@@ -30,7 +55,9 @@ function WCExport_GetMainFrame(text)
         eb:SetMultiLine(true)
         eb:SetAutoFocus(true)
         eb:SetFontObject("ChatFontNormal")
-        eb:SetScript("OnEscapePressed", function() f:Hide() end)
+        eb:SetScript("OnEscapePressed", function()
+            f:Hide()
+        end)
         sf:SetScrollChild(eb)
 
         WCExportFrame = f
@@ -43,7 +70,7 @@ end
 -- Register the /wcexport command
 SLASH_WCEXPORT1 = "/wcexport"
 SlashCmdList["WCEXPORT"] = function()
-    local mountInfo = ExportMountInfo()
-    local frame = WCExport_GetMainFrame(mountInfo)
+    local collectionInfo = ExportCollectionInfo()
+    local frame = WCExport_GetMainFrame(collectionInfo)
     frame:Show()
 end

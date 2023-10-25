@@ -6,4 +6,5 @@
 
 ## DefaultState: enabled
 
+AchievementData.lua
 WCExports.lua
