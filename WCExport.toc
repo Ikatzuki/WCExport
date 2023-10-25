@@ -9,4 +9,5 @@
 AchievementData.lua
 PetData.lua
 FactionData.lua
+TitleData.lua
 WCExports.lua

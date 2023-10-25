@@ -54,8 +54,34 @@ local function ExportCollectionInfo()
     end
     local factionString = "Factions:" .. table.concat(collectedFactions, ",")
 
+    -- Titles
+    local faction = UnitFactionGroup("player")
+    local titleTables = {WCExport_NeutralTitleNameIDs}
+    if faction == "Alliance" then
+        table.insert(titleTables, WCExport_AllianceTitleNameIDs)
+    elseif faction == "Horde" then
+        table.insert(titleTables, WCExport_HordeTitleNameIDs)
+    end
+
+    local collectedTitles = {}
+    for i = 1, 150 do
+        if IsTitleKnown(i) == true then
+            for _, titleTable in ipairs(titleTables) do
+                for titleName, titleID in pairs(titleTable) do
+                    local titleInfo = GetTitleName(i)
+                    if titleInfo and titleInfo:find(titleName) then
+                        table.insert(collectedTitles, titleID)
+                        break
+                    end
+                end
+            end
+        end
+    end
+    local titleString = "Titles:" .. table.concat(collectedTitles, ",")
+
     -- Combine strings
-    local collectionString = mountString .. ";" .. toyString .. ";" .. achievementString .. ";" .. petString .. ";" .. factionString
+    local collectionString = mountString .. ";" .. toyString .. ";" .. achievementString .. ";" .. petString .. ";" ..
+                                 factionString .. ";" .. titleString
 
     return collectionString
 end
