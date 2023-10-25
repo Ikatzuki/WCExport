@@ -31,8 +31,18 @@ local function ExportCollectionInfo()
     end
     local achievementString = "Achievements:" .. table.concat(collectedAchievements, ",")
 
-    -- Combine mount and toy strings
-    local collectionString = mountString .. ";" .. toyString .. ";" .. achievementString
+    -- Pets
+    local collectedPets = {}
+    for petName, petID in pairs(WCExport_PetNameIds) do
+        local id, customName = C_PetJournal.FindPetIDByName(petName)
+        if id then
+            table.insert(collectedPets, petID)
+        end
+    end
+    local petString = "Pets:" .. table.concat(collectedPets, ",")
+
+    -- Combine strings
+    local collectionString = mountString .. ";" .. toyString .. ";" .. achievementString .. ";" .. petString
 
     return collectionString
 end

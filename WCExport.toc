@@ -7,4 +7,5 @@
 ## DefaultState: enabled
 
 AchievementData.lua
+PetData.lua
 WCExports.lua
