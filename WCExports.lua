@@ -1,4 +1,4 @@
--- Function to export mount and toy info
+-- Function to export string for WoWCollections.io importing.
 local function ExportCollectionInfo()
     -- Mounts
     local mountIDs = C_MountJournal.GetMountIDs()
