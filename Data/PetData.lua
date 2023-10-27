@@ -147,7 +147,6 @@ WCExport_PetNameIds = {
     ["Fossilized Hatchling"] = 148,
     ["Pterrordax Hatchling"] = 149,
     ["Voodoo Figurine"] = 150,
-    ["Lil' Leftovers"] = 151,
     ["Enchanted Lantern"] = 152,
     ["Magic Lamp"] = 153,
     ["Elementium Geode"] = 154,
