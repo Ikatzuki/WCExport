@@ -35,7 +35,7 @@ local function ExportCollectionInfo()
     local collectedPets = {}
     for petName, petID in pairs(WCExport_PetNameIds) do
         local id, customName = C_PetJournal.FindPetIDByName(petName)
-        if id then
+        if customName then
             table.insert(collectedPets, petID)
         end
     end
