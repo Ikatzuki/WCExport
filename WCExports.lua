@@ -64,12 +64,12 @@ local function ExportCollectionInfo()
     end
 
     local collectedTitles = {}
-    for i = 1, 150 do
+    for i = 1, 177 do
         if IsTitleKnown(i) == true then
             for _, titleTable in ipairs(titleTables) do
                 for titleName, titleID in pairs(titleTable) do
                     local titleInfo = GetTitleName(i)
-                    if titleInfo and titleInfo:find(titleName) then
+                    if titleInfo and titleInfo == titleName then
                         table.insert(collectedTitles, titleID)
                         break
                     end
