@@ -96,7 +96,6 @@ WCExport_PetNameIds = {
     ["Razormaw Hatchling"] = 96,
     ["Razzashi Hatchling"] = 97,
     ["Mr. Grubbs"] = 98,
-    ["Bronze Whelpling"] = 99,
     ["Emerald Whelpling"] = 100,
     ["Sprite Darter Hatchling"] = 101,
     ["Azure Whelpling"] = 102,
