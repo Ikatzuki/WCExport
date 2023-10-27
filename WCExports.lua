@@ -1,11 +1,15 @@
 -- Function to export string for WoWCollections.io importing.
 local function ExportCollectionInfo()
+    -- Get players faction
+    local faction = UnitFactionGroup("player")
+    local factionIndex = (faction == "Alliance") and 1 or (faction == "Horde") and 0
+
     -- Mounts
     local mountIDs = C_MountJournal.GetMountIDs()
     local collectedMounts = {}
     for i, mountID in ipairs(mountIDs) do
-        local name, spellID, icon, isActive, isUsable = C_MountJournal.GetMountInfoByID(mountID)
-        if isActive or isUsable then
+        local name, spellID, icon, _, _, _, _, _, mountFaction, _, isCollected = C_MountJournal.GetMountInfoByID(mountID)
+        if isCollected and (mountFaction == nil or mountFaction == factionIndex) then
             table.insert(collectedMounts, spellID)
         end
     end
@@ -55,7 +59,6 @@ local function ExportCollectionInfo()
     local factionString = "Factions:" .. table.concat(collectedFactions, ",")
 
     -- Titles
-    local faction = UnitFactionGroup("player")
     local titleTables = {WCExport_NeutralTitleNameIDs}
     if faction == "Alliance" then
         table.insert(titleTables, WCExport_AllianceTitleNameIDs)
