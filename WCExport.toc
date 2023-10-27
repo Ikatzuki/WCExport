@@ -1,5 +1,5 @@
 ## Interface: 30403
-## Title:|cffff7d0aWoWCollectionsExport|r
+## Title:|cffff7d0aWCExport|r
 ## Version: 1.0
 ## Notes: Gives you a string for importing data to WoWCollections.io
 ## Author: Ikatzuki
@@ -10,4 +10,4 @@ Data/AchievementData.lua
 Data/PetData.lua
 Data/FactionData.lua
 Data/TitleData.lua
-WCExports.lua
+WCExport.lua
