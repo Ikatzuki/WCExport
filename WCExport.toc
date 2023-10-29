@@ -1,6 +1,6 @@
 ## Interface: 30403
 ## Title:|cffff7d0aWCExport|r
-## Version: 1.0
+## Version: 1.1
 ## Notes: Gives you a string for importing data to WoWCollections.io
 ## Author: Ikatzuki
 
